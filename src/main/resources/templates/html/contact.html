@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:s="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/nav-bar.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/contact.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
+    <script type="text/javascript" th:src="@{/js/script.js}" th:defer="defer"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav class="navbar">
+    <div class="navbar-logo">
+        <div class="dropdown">
+            <div class="hamburger-icon" onclick="toggleDropdown()">
+                <img src="https://recept.se/assets/images/menu/hamburger.svg" alt="Logo">
+            </div>
+            <!-- GÖR OM DIV TILL <a> länkar så att vi skickas till contact.html , about.html och articles.html -->
+            <div class="dropdown-menu" id="dropdown-menu" style="display:none">
+                <a href="/articles" class="dropdown-menu-item">Articles</a>
+                <a href="/about" class="dropdown-menu-item">About us</a>
+                <a href="/contact" class="dropdown-menu-item">Contact us</a>
+            </div>
+        </div>
+        <a href="/" class="navbar-brand"> <!-- Add the link to the home page -->
+            <img class="logo" th:src="@{/images/nylogo.png}" alt="Logo">
+        </a>
+    </div>
+
+    <div class="navbar-menu">
+        <div class="search">
+            <form class="search-form" th:action="@{/search}" method="get">
+                <div class="search-icon" onclick="toggleSearchField()">
+                    <img src="https://recept.se/assets/images/menu/search.svg" alt="search icon">
+                </div>
+                <input type="text" class="search-field navbar-search-field" name="searchTerm" placeholder="Search..."
+                       style="display: none">
+            </form>
+        </div>
+        <div class="user">
+            <div class="user-icon" id="user-icon">
+                <img th:if="${loggedInUser == null or loggedInUser.userProfileImg == null}"
+                     src="https://recept.se/assets/images/icons/user.svg" alt="user icon" id="user-icon-preview">
+                <img th:if="${loggedInUser != null and loggedInUser.userProfileImg != null}"
+                     th:src="'data:image/png;base64,' + ${thymeleafUtil.encodeToBase64(loggedInUser.userProfileImg)}"
+                     alt="user icon">
+            </div>
+            <div class="profile-form" id="profileForm" style="display:none">
+                <form action="/logout" method="post" s:authentication="">
+                    <a class="profile-dropdown" href="/myProfile">My Profile</a>
+                    <a class="profile-dropdown" href="/myFavourites">Favourite Recipes</a>
+                    <a class="profile-dropdown" href="/settings">Settings</a>
+                    <button type="submit">Log Out</button>
+                </form>
+            </div>
+            <div class="login-form" id="loginForm" style="display: none">
+                <form action="/login" method="post">
+                    <input type="text" name="username" placeholder="Username" onfocus="this.placeholder=''"
+                           onblur="this.placeholder='Username'" required>
+                    <input type="password" name="password" placeholder="Password" onfocus="this.placeholder=''"
+                           onblur="this.placeholder='Password'" required>
+                    <button type="submit">Log in</button>
+                </form>
+                <a href="/createAccount">Create Account</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!--<div class="container">-->
+<!--    <form action="https://formsubmit.co/695d60ede3158f1f66839ebd6514423d" method="POST"> &lt;!&ndash; länk till våra mejl &ndash;&gt;-->
+<!--        <div class="form-group">-->
+<!--            <input type="text" name="name" id="name" required>-->
+<!--            <label for="name">-->
+<!--                <p>Name</p>-->
+<!--            </label>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <input type="email" name="email" id="email" required>-->
+<!--            <label for="email">-->
+<!--                <p>Email</p>-->
+<!--            </label>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <textarea id="message" type="text" name="message" cols="30" rows="10" required></textarea>-->
+<!--            <label for="message">-->
+<!--                <p>Message</p>-->
+<!--            </label>-->
+<!--        </div>-->
+<!--        <button type="submit" class="button-form">SUBMIT</button>-->
+<!--    </form>-->
+<!--</div>-->
+
+<div class="container">
+    <form action="https://formsubmit.co/695d60ede3158f1f66839ebd6514423d" method="POST" onsubmit="showSuccessMessage()">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" required>
+
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required>
+
+        </div>
+        <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" type="text" name="message" cols="69" rows="10" required></textarea>
+        </div>
+
+        <button type="submit" class="button-form">SUBMIT</button>
+        <input type="hidden" name="_next" value="http://localhost:8080/contact">
+    </form>
+    <p id="success-message" style="display:none;">Thank you for your message!</p>
+</div>
+
+<div class="flex-it"></div>
+
+<div th:if="${errorUserLogin}">
+    <script th:inline="javascript">
+        alert([[${errorUserLogin}]]);
+    </script>
+</div>
+
+<footer class="footerContainer">
+    <div class="footer-content">
+        <a href="/" class="footer-logo"> <!-- Add the link to the home page -->
+            <img th:src="@{/images/nylogo.png}" alt="Logo" height="60px" width="60px">
+        </a>
+        <!--        <p class="dev">DEV ¤ </p>-->
+        <!--        <img th:src="@{/images/jika-logo-kopia.png}" alt="Logo" > &lt;!&ndash;height="150px" width="150px"&ndash;&gt;-->
+        <p>FOLLOW US!</p>
+        <ul class="socials">
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+            <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+            <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+        </ul>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="footer-menu">
+            <ul class="f-menu">
+                <li><a href="http://localhost:8080/" target="_self">Home</a></li>
+                <li><a href="/articles">Articles</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

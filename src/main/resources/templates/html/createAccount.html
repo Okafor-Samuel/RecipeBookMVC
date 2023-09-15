@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:s="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/nav-bar.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/createAccount.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/font-awesome-4.7.0/css/font-awesome.min.css}">
+    <script type="text/javascript" th:src="@{/js/script.js}" th:defer="defer"></script>
+    <meta charset="UTF-8">
+    <title>Create Account</title>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="navbar-logo">
+        <div class="dropdown">
+            <div class="hamburger-icon">
+                <img src="https://recept.se/assets/images/menu/hamburger.svg" alt="Logo" onclick="toggleDropdown()">
+            </div>
+            <div class="dropdown-menu" id="dropdown-menu">
+                <a href="/articles" class="dropdown-menu-item">Articles</a>
+                <a href="/about" class="dropdown-menu-item">About us</a>
+                <a href="/contact" class="dropdown-menu-item">Contact us</a>
+            </div>
+        </div>
+        <a href="/" class="navbar-brand"> <!-- Add the link to the home page -->
+            <img class="logo" th:src="@{/images/nylogo.png}" alt="Logo">
+        </a>
+    </div>
+</nav>
+
+<div class="container">
+    <h1>Create Account</h1>
+    <form action="/create-account" method="post">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" required>
+        </div>
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" name="firstName" id="firstName" required>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" name="lastName" id="lastName" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required>
+        </div>
+        <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" name="confirmPassword" id="confirmPassword" required>
+        </div>
+        <p th:text="${errorMessage}"></p>
+        <p class="accountSuccessfullyCreated" th:text="${accountSuccessfullyCreated}"></p>
+        <button type="submit">Create Account</button>
+    </form>
+</div>
+
+    <div class="flex-it"></div>
+
+    <div th:if="${errorUserLogin}">
+        <script th:inline="javascript">
+            alert([[${errorUserLogin}]]);
+        </script>
+    </div>
+
+    <footer class="footerContainer">
+        <div class="footer-content">
+            <a href="/" class="footer-logo"> <!-- Add the link to the home page -->
+                <img th:src="@{/images/nylogo.png}" alt="Logo" height="60px" width="60px">
+            </a>
+            <!--        <p class="dev">DEV ¤ </p>-->
+            <!--        <img th:src="@{/images/jika-logo-kopia.png}" alt="Logo" > &lt;!&ndash;height="150px" width="150px"&ndash;&gt;-->
+            <p>FOLLOW US!</p>
+            <ul class="socials">
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+            </ul>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-menu">
+                <ul class="f-menu">
+                    <li><a href="http://localhost:8080/" target="_self">Home</a></li>
+                    <li><a href="/articles">Articles</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+</html>

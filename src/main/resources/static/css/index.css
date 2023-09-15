@@ -1,0 +1,289 @@
+/* Set margin and padding to 0 for the entire page */
+@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap);
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    background-color: #f5f5f5;
+}
+
+
+.hero {
+    align-items: center;
+    background-image: url(https://images.unsplash.com/photo-1577303935007-0d306ee638cf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1440&q=80);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    min-height: 43rem;
+    padding: 1rem 0;
+    position: relative;
+    width: 100%;
+    z-index: 0; /* To place the background behind the content test */
+}
+
+.hero-content {
+    text-align: center;
+    color: white;
+    z-index: 3;
+}
+
+.hero-content h1 {
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    text-shadow: rgb(0, 0, 0) 1px 4px;
+}
+
+.hero-content p {
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    text-shadow: rgb(0, 0, 0) 1px 3px;
+}
+
+.search-form button[type="submit"] {
+    width: 100px;
+    font-size: 16px;
+    background-color: #86BCA8;
+    color: #fff;
+    border: none;
+    border-top-right-radius: 2.8rem;
+    border-bottom-right-radius: 2.8rem;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s;
+}
+
+.search-form button[type="submit"]:hover {
+    background-color: #679481;
+}
+
+.hero-search-input {
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 2.8rem;
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 0px 4px 0px;
+    box-sizing: border-box;
+    font-size: 1.6rem;
+    line-height: 5.2rem;
+    outline-color: #86BCA8;
+    padding-left: 2.8rem;
+    padding-right: 6rem;
+    width: 60%;
+    height: 5.6rem;
+    appearance: none !important;
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    text-align: center;
+}
+
+.hero-search-input:focus {
+    border: 4px solid #86BCA8;
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 0px 4px 0px;
+}
+
+.hero-search-button {
+    background-color: #86BCA8;
+    border: 1px solid #86BCA8;
+    height: 5.6rem;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 5.6rem;
+    background-image: url('https://recept.se/assets/images/icons/search_w.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50%;
+}
+
+
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 1.4rem;
+    }
+}
+
+.gallery {
+    margin: 4rem auto;
+    max-width: 90rem;
+}
+
+.gallery-wrapper {
+    display: grid;
+    grid-template-rows: auto 1fr;
+}
+
+.gallery-header {
+    margin-top: 0;
+    text-align: start;
+    font-size: 2rem;
+    padding-top: 5rem;
+    margin-left: 0.5rem;
+}
+
+.gallery-container {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 20rem;
+    /*min-height: 600px; !* Add this line *!*/
+}
+
+.gallery-container-first {
+    min-height: 380px;
+}
+
+
+.gallery-container-2, .gallery-container-3 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+
+.gallery-wrapper-2 {
+    margin-top: -25%;
+    margin-bottom: -15%;
+}
+
+
+
+.gallery-item {
+    position: relative; /* Add this line */
+    padding: 0.5rem;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem; /* Add some margin bottom */
+}
+
+
+
+
+.gallery-item img {
+    flex: 1;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    object-position: center;
+    position: absolute;
+    border: 1px solid transparent; /* Add this line */
+    border-radius: 0.5rem;
+}
+
+
+
+.image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+
+
+hr {
+    height: 1px;
+    background-color: #86BCA8;
+    border: none;
+    max-width: 90rem; /* Add max-width to match the gallery width */
+    margin: 0 auto; /* Center the hr line */
+}
+
+
+/* Favorites button */
+
+.addToFavorites {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.gallery-item-article img {
+    position: static;
+}
+
+
+.addToFavorites i {
+    font-size: 24px;
+    color: #fff;
+}
+
+
+.addToFavorites i.fa-heart {
+    color: #f44336;
+}
+
+.addToFavorites:hover {
+    color: gray;
+    transition: color 0.2s ease-in-out;
+}
+
+.gallery-item img:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.gallery-item-article a {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+}
+
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+
+    .gallery-container-first {
+        min-height: auto; /* Add this line */
+    }
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 1.4rem;
+    }
+
+    .addToFavorites {
+        right: 20px; /* Adjust the heart icon position on smaller screens */
+    }
+
+    .gallery-container, .gallery-container-2, .gallery-container-3 {
+        grid-template-columns: 1fr; /* Change the grid to a single column on smaller screens */
+    }
+
+    .gallery-container .gallery-item:first-child {
+        height: auto;
+    }
+}
+
+
+
+/* Media query for medium-sized screens */
+@media (max-width: 992px) {
+    .gallery-container-2, .gallery-container-3 {
+        grid-template-columns: repeat(2, 1fr); /* Change the grid to two columns on medium-sized screens */
+    }
+}

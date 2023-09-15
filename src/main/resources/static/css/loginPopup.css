@@ -1,0 +1,75 @@
+#overlay {
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+#loginPopup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#loginPopup h2 {
+    margin-top: 0;
+}
+
+#loginPopup form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+#loginPopup input[type="text"],
+#loginPopup input[type="password"] {
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+}
+
+#loginPopup button[type="submit"] {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#loginPopup button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+#loginPopup a {
+    display: block;
+    margin-bottom: 20px;
+}
+
+#close-btn {
+    display: block;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: #ccc;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#close-btn:hover {
+    background-color: #bbb;
+}
